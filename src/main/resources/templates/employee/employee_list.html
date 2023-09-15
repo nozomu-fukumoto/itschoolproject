@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>社員一覧 | 社員管理アプリケーション</title>
+</head>
+<body>
+  <h1 class="mt-3">社員管理アプリケーション</h1>
+  <ul>
+    <li><a href="../index.html" th:href="@{/}">トップページ</a></li>
+    <li><a href="employee_add.html" th:href="@{/employee/addpage}">社員情報追加</a></li>
+    <li>
+      <form method="post" th:action="@{/employee/search}" th:object="${formModel}">
+        <label>名前検索:</label>
+        <input type="text" name="name" th:field="*{name}">
+        <input type="submit" value="検索">
+      </form>
+    </li>
+  </ul>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>社員一覧</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="employee : ${employeeList}">
+        <th th:text="${employee.name}"></th>
+        <th th:text="${employee.kana}"></th>
+        <th th:text="${employee.position}"></th>
+        <th th:text="${employee.birthday}"></th>
+        <th th:text="${employee.tel}"></th>
+        <th th:text="${employee.mail}"></th>
+        <th th:text="${employee.remarks}"></th>
+        <th><a href="employee_add.html" th:href="@{'/employee/?id=' + ${employee.id}}" th:value="${employee.id}">詳細へ</a></th>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

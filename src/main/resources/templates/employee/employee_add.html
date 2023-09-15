@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>社員追加 | 社員管理アプリケーション</title>
+</head>
+<body>
+  <h1 class="mt-3">社員管理アプリケーション</h1>
+  <ul>
+    <li><a href="../index.html" th:href="@{/}">トップページ</a></li>
+  </ul>
+  <form th:method="post" th:action="@{/employee/addpage/add}">
+    <input type="text" name="name" />
+    <input type="text" name="kana" />
+    <input type="text" name="position" />
+    <input type="date" name="birthday" />
+    <input type="text" name="tel" />
+    <input type="text" name="mail" />
+    <input type="text" name="remarks" />
+    <input type="submit" value="追加" />
+
+  </form>
+
+
+</body>
+</html>

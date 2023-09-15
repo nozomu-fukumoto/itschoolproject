@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sample.itschoolpg.itschoolproject.mapper.EmployeeMapper">
+  <select id="selectAll" resultType="com.sample.itschoolpg.itschoolproject.entitiy.EmployeeEntity">
+    SELECT
+      *
+    FROM
+      employee
+    ORDER BY
+      id
+  </select>
+  <select id="selectDetail" resultType="com.sample.itschoolpg.itschoolproject.entitiy.EmployeeEntity">
+    SELECT
+      *
+    FROM
+      employee
+    WHERE
+      id
+    = #{id}
+  </select>
+  <select id="selectName" resultType="com.sample.itschoolpg.itschoolproject.entitiy.EmployeeEntity">
+    SELECT
+        *
+    FROM
+        employee
+    WHERE
+        name like '%' || #{name} || '%'
+    order by
+        id
+  </select>
+
+  <insert id="add" parameterType="com.sample.itschoolpg.itschoolproject.entitiy.EmployeeEntity">
+    insert into employee(
+        name,
+        kana,
+        position,
+        birthday,
+        tel,
+        mail,
+        remarks
+    )
+    values(
+        #{name},
+        #{kana},
+        #{position},
+        to_date(#{birthday}, 'yy-mm-dd'),
+        #{tel},
+        #{mail},
+        #{remarks}
+    )
+  </insert>
+  <update id="update" parameterType="com.sample.itschoolpg.itschoolproject.entitiy.EmployeeEntity">
+    update
+        employee
+    set
+        name = #{name},
+        kana = #{kana},
+        position = #{position},
+        birthday = to_date(#{birthday}, 'yy-mm-dd'),
+        tel = #{tel},
+        mail = #{mail},
+        remarks = #{remarks}
+    where
+        id = #{id}
+  </update>
+  <delete id="delete" parameterType="com.sample.itschoolpg.itschoolproject.entitiy.EmployeeEntity">
+    delete
+    from
+        employee
+    where
+        id = #{id}
+  </delete>
+
+</mapper>
